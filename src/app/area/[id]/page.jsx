@@ -1,0 +1,279 @@
+"use client"
+
+import React, {useEffect, useState} from 'react';
+import Container from "@/app/_components/container";
+import InstagramIcon from '../_assets/lyra-icon-InstagramLogo.svg';
+import TelegramIcon from '../_assets/lyra-icon-TelegramLogo.svg';
+import WhatsappIcon from '../_assets/lyra-icon-brand-whatsapp281.svg';
+import Image from "next/image";
+import Link from "next/link";
+import Eye from "@/app/_components/newsCards/components/assets/lyra-icon-eye-open.svg";
+import Card from "@/app/_components/newsCards/components/Card";
+import {useParams} from "next/navigation";
+import axiosInstance from "@/service";
+import {format} from "date-fns";
+import {kk, ru} from "date-fns/locale";
+import {Carousel} from "antd";
+
+const Page = () => {
+    const [akimatInfo, setAkimatInfo] = useState(null);
+    const [newsData, setNewsData] = useState([]);
+    const [advs, setAdvs] = useState([]);
+    const [loading, setLoading] = useState(true)
+    const params = useParams()
+    const [locale, setLocale] = useState("ru")
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setLocale(window.localStorage.getItem("locale") || "ru")
+        }
+    }, [])
+    useEffect(() => {
+        setLoading(true)
+        Promise.all([
+            axiosInstance.get(`/akimat/${params.id}`)
+                .then((res) => setAkimatInfo(res.data))
+                .catch((error) => console.error('Error fetching Akimat info:', error)),
+            axiosInstance.get(`/news/akimat/${params.id}`)
+                .then((res) => setNewsData(res.data))
+                .catch((error) => console.error('Error fetching News data:', error)),
+            axiosInstance.get("/advertisement")
+                .then((res) => setAdvs(res.data))
+                .catch((error) => console.error('Error fetching Advertisement data:', error)),
+        ]).finally(() => {
+            setLoading(false)
+        })
+    }, []);
+
+
+    if (loading) {
+        return <div>
+            Loading
+        </div>
+    }
+
+    return (
+        <>
+            <Container className={'bg-secondary overflow-hidden'}>
+                <div className={'w-full'}>
+                    <div className={'w-full  flex justify-between sm:my-10 md:my-14 lg:my-20 xl:my-24'}>
+                        <p className={'text-white text-[24px] font-bold leading-[28.4px]'}>
+                            {locale === "ru" ? akimatInfo?.title_ru : akimatInfo?.title_kk}
+                        </p>
+                        <div className={'flex gap-[30px]'}>
+                            <Image src={InstagramIcon} alt={''} width={20} height={20}/>
+                            <Image src={TelegramIcon} alt={''} width={20} height={20}/>
+                            <Image src={WhatsappIcon} alt={''} width={20} height={20}/>
+                        </div>
+                    </div>
+                </div>
+            </Container>
+            <hr/>
+            <Container className={'py-8'}>
+                <div className={'w-full'}>
+                    <Link href={'/'}>{locale === "ru" ? "Главная страница" : "Басты бет"}</Link> /
+                    <Link
+                        href={`/area/${params.id}`}>{locale === "ru" ? akimatInfo?.title_ru : akimatInfo?.title_kk}</Link> /
+                    {/*<Link href={'/area/1'}>Пресс центр</Link>*/}
+                </div>
+                <h1 className={'w-full text-[42px] my-8 font-semibold'}>
+                    {locale === "ru" ? "Главные новости" : "Басты жаңалықтар"}
+                </h1>
+                {newsData && newsData.length > 0 && <div className={'flex w-full mb-10'}>
+                    <div className={'w-3/4 flex flex-col gap-y-3'}>
+                        <div
+                            className={'w-full bg-cover bg-center relative'}
+                            style={{
+                                backgroundImage: `url("${newsData[0].image_url}")`,
+                            }}
+                        >
+                            <div className={'w-full h-[450px] bg-gradient-to-t from-black opacity-30 '}></div>
+                            <div className={'absolute bottom-[20px] left-[20px] w-2/3 flex flex-col opacity-100'}>
+                                <Link href={'/news'} className={'text-[28px] leading-[30px] text-white'}>
+                                    {newsData[0].title}
+                                </Link>
+                                <div className={' flex gap-6 text-white '}>
+                                    <p>
+                                        {new Date(newsData[0].createdAt.toString()) ? format(new Date(new Date(newsData[0].createdAt.toString())), 'd MMMM', {locale: locale === "ru" ? ru : kk}) : ''}
+                                    </p>
+                                    <p className={'flex gap-x-1'}>
+                                        <Image src={Eye} alt={""}/>
+                                        {newsData[0].view_count}
+                                    </p>
+                                    {/*<p className={'flex gap-x-1'}>*/}
+                                    {/*  <Image src={Comment} alt={""} />*/}
+                                    {/*  23*/}
+                                    {/*</p>*/}
+                                </div>
+                            </div>
+                        </div>
+                        <div className={'flex w-full flex-wrap gap-x-[20px] gap-y-[20px] justify-center'}>
+                            {
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                newsData.map((item) => {
+                                    console.log(item)
+                                    return <Card id={item.id} title={item.title} date={item.createdAt}
+                                                 view_count={item.view_count}
+                                                 image={item.image_url}
+                                                 key={item.id} width={258}/>
+                                })
+                            }
+                        </div>
+                    </div>
+                    {/*<div className={'w-1/4 flex flex-col px-2 mb-8'}>*/}
+                    {/*  <div className={'flex text-[16px] bg-primary w-full'}>*/}
+                    {/*    <div className={'flex flex-1 text-white justify-center'}>{locale === "ru" ? "Последние события" : "Соңғы оқиғалар"}</div>*/}
+                    {/*  </div>*/}
+                    {/*  <div className={'flex flex-col w-full'}>*/}
+                    {/*    <div className={' flex flex-col w-full gap-3 mt-4'}>*/}
+                    {/*      <h3 className={'text-[16px] font-medium'}>01 ноября - 30 ноября</h3>*/}
+                    {/*      <div className={'flex gap-x-[16px] text-black mb-6 text-[16px]'}>*/}
+                    {/*        Областной конкурс «Тагылымы телімгер - жас маманнын зергері»*/}
+                    {/*      </div>*/}
+                    {/*    </div>*/}
+                    {/*  </div>*/}
+                    {/*</div>*/}
+                </div>
+                }
+            </Container>
+            <Container className={'mb-7'}>
+                <h1 className={'w-full text-[42px] mt-8 mb-3 font-semibold'}>
+                    {
+                        <span>{locale === "ru" ? "Районные акиматы" : "Аудандық әкімдіктер"}</span>
+                    }
+                </h1>
+                <div className={'w-full flex gap-[30px]'}>
+                    {
+                        akimatInfo?.childs.length === 0 &&
+                        <p>{locale === "ru" ? "Нет районных акиматов" : "Аудандық әкімдіктер жоқ"}</p>
+                    }
+                    {akimatInfo?.childs.map((item) => (
+                        <Link
+                            href={`/area/${item.id}`}
+                            key={item.id}
+                            className={'font-medium cursor-pointer flex items-center justify-start hover:underline gap-2'}
+                        >
+                            <span className={'w-[5px] h-[5px] rounded-full bg-black'}/>
+                            <span>
+              {locale === "ru" ? item.title_ru : item.title_kk}
+            </span>
+                        </Link>
+                    ))}
+                </div>
+            </Container>
+                <Carousel arrows autoplay={true}>
+                    {advs.map((item) => (
+                        <div key={item.id}>
+                            <a href={item.link}>
+                                <div
+                                    href={item.link}
+                                    style={{
+                                        backgroundImage: `url("${item.image_url}")`, // Ensure it's a valid URL format
+                                        backgroundSize: 'cover',
+                                        backgroundColor: "blue",// Ensures the image covers the entire div
+                                        backgroundPosition: 'center', // Centers the image within the div
+                                        height: '160px', // Make sure the div has height
+                                    }}
+                                >
+                                </div>
+                            </a>
+                        </div>
+                    ))}
+                </Carousel>
+
+            <Container className={'mb-5'}>
+                <h1 className={'text-[35px] w-full font-semibold'}>
+                    {
+                        <span>{locale === "ru" ? "Об области" : "Облыс туралы"}</span>
+                    }
+                </h1>
+                <div className="w-full flex gap-4">
+                    <div
+                        className={`bg-cover bg-center bg-gray-300 w-[460px] h-[300px] ${!akimatInfo.region_image ? "animate-pulse" : ""}`}
+                        style={{
+                            backgroundImage: `url("${akimatInfo.region_image}")`
+                        }}
+                    ></div>
+                    <div className="flex flex-col gap-5">
+                        <h3 className="text-[20px] text-semibold">
+                            {locale === "ru" ? akimatInfo.region_name_ru : akimatInfo.region_name_kk}
+                        </h3>
+                        <p>
+                            {locale === "ru" ? akimatInfo.region_description_ru : akimatInfo.region_description_kk}
+                        </p>
+                    </div>
+                </div>
+            </Container>
+
+            <Container className={'mb-5'}>
+                <h1 className={'text-[35px] w-full font-semibold'}>
+                    {
+                        <span>{locale === "ru" ? "Руководство" : "Басшылық"}</span>
+                    }
+                </h1>
+                <div className="w-full flex gap-4 p-4 bg-[#0A478C17]">
+                    <div
+                        className={`bg-cover bg-center bg-gray-300 w-[200px] h-[230px] ${!akimatInfo.head_image ? "animate-pulse" : ""}`}
+                        style={{
+                            backgroundImage: `url("${akimatInfo.head_image}")`
+                        }}
+                    ></div>
+                    <div className="flex flex-col gap-5">
+                        <h3 className="text-[20px] text-semibold">
+                            {akimatInfo.head_name}
+                            {locale === "ru" ? akimatInfo.head_name_ru : akimatInfo.head_name_kk}
+                        </h3>
+                        <p>
+                            {akimatInfo.head_description}
+                            {locale === "ru" ? akimatInfo.head_description_ru : akimatInfo.head_description_kk}
+                        </p>
+                    </div>
+                </div>
+            </Container>
+            <Container>
+                <div className={'w-full flex my-10 gap-4'}>
+                    <Link href={"https://open.egov.kz/"} target={"_blank"} className={'flex-1  text-[14px] gap-2'}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="https://www.gov.kz/uploads/2019/6/19/a1297e9e09f22c412ddfe056d3d4ed9c_original.19895.svg" alt="d" className={"h-[50px]"}/>
+                        <p className={"mt-3"}>НҚА әзірлеу мен бюджетті жасауда қатысу, ашық деректерді алу, мемлекеттік органдарға өтініш жіберу</p>
+                    </Link>
+                    <Link href={"https://egov.kz/cms/kk"}  target={"_blank"} className={'flex-1 text-[14px] gap-2'}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="https://www.gov.kz/uploads/2020/1/9/602c5a9aaa19882413e630395f7ceb31_original.6761.png" alt="d" className={"h-[50px]"}/>
+                        <p className={"mt-3"}>eGov.kz электрондық үкімет порталы – мемлекеттік қызметтерді онлайн түрде алу</p>
+                    </Link>
+                    <Link href={"https://eotinish.kz/kk"}  target={"_blank"} className={'flex-1  text-[14px] gap-2'}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="https://www.gov.kz/uploads/2023/7/31/557ce713e82d4763d5bd4ae96b4e0cab_original.4211.png" alt="d" className={"h-[50px]"}/>
+                        <p className={"mt-3"}>e-Otinish – Мемлекеттік органдарға өтініш беру</p>
+                    </Link>
+                    <Link href={"https://sb.egov.kz/smart-bridge/home"}  target={"_blank"} className={'flex-1 text-[14px] gap-2'}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="https://www.gov.kz/uploads/2019/6/19/9db49dbece24b92b6d6dd2a7d9c0b5eb_original.12820.svg" alt="d" className={"h-[50px]"}/>
+                        <p className={"mt-3"}>Бизнеске мемлекеттік ақпараттық жүйелермен интеграциялануға көмектесетін Платформа</p>
+                    </Link>
+                </div>
+            </Container>
+        </>
+    );
+};
+
+// EventCard.tsx (or within your page component)
+//
+// interface EventCardProps {
+//   date: string;
+//   title: string;
+// }
+//
+// export const EventCard: React.FC<EventCardProps> = ({ date, title }) => {
+//   return (
+//     <div className="border p-4 w-full shadow-sm">
+//       <h3 className="text-lg font-bold">{date}</h3>
+//       <p className="text-gray-600 mt-2">{title}</p>
+//       {/*<button className="mt-4 bg-gray-200 text-gray-800 px-4 py-2">*/}
+//       {/*  Конкурс*/}
+//       {/*</button>*/}
+//     </div>
+//   );
+// };
+
+export default Page;
