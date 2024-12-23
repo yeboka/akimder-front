@@ -80,8 +80,8 @@ const NewsCards = () => {
 
 
   return (
-    <div className={'flex justify-center w-full flex-col items-center justify-center'}>
-      <div className={'flex w-full flex-wrap gap-x-[20px] gap-y-[20px] justify-center'}>
+    <div className={'flex justify-center w-full flex-col items-center justify-start'}>
+      <div className={'flex w-full flex-wrap gap-x-[20px] gap-y-[20px] justify-start'}>
         {
           !loading && data?.map((item, index) => (
             index < 8 && <Card id={item.id} title={item.title} image={item.image_url} key={item.id} view_count={item.view_count} date={item.createdAt} area={item.akimatName}/>

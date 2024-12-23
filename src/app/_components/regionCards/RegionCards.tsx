@@ -40,7 +40,7 @@ const RegionCards: React.FC<CardsData> = ({ }) => {
 
   useEffect(() => {
     setLoading(true)
-    axiosInstance.get("/akimat")
+    axiosInstance.get("/akimat/regions")
       .then((res) => {
         setRegions(res.data)
       })

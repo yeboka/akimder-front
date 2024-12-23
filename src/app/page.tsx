@@ -6,6 +6,7 @@ import RegionCards from "@/app/_components/regionCards";
 import NewsCards from "@/app/_components/newsCards";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Banner from "@/app/_components/banners/banner";
 
 export default function Home() {
 
@@ -88,35 +89,44 @@ export default function Home() {
                       locale === "ru" ?
                         <>Премьер-министр Республики Казахстан <br/> <strong>Бектенов Олжас Абаевич</strong> </>
                         :
-                        <>Қазақстан Республикасының Премьер-Министрі <br/> <strong>Олжас Абайұлы Бектенов</strong></>
+                        <>Қазақстан Республикасының <br/> Премьер-Министрі <br/> <strong>Олжас Абайұлы
+                          Бектенов</strong></>
                     }
                   </Link>
                 </div>
               </div>
             </div>
           </div>
-          <div className={'w-full flex my-10 gap-4'}>
-            <Link href={"https://open.egov.kz/"} target={"_blank"} className={'flex-1  text-[14px] gap-2'}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="https://www.gov.kz/uploads/2019/6/19/a1297e9e09f22c412ddfe056d3d4ed9c_original.19895.svg" alt="d" className={"h-[50px]"}/>
-              <p className={"mt-3"}>НҚА әзірлеу мен бюджетті жасауда қатысу, ашық деректерді алу, мемлекеттік органдарға өтініш жіберу</p>
-            </Link>
-            <Link href={"https://egov.kz/cms/kk"}  target={"_blank"} className={'flex-1 text-[14px] gap-2'}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="https://www.gov.kz/uploads/2020/1/9/602c5a9aaa19882413e630395f7ceb31_original.6761.png" alt="d" className={"h-[50px]"}/>
-              <p className={"mt-3"}>eGov.kz электрондық үкімет порталы – мемлекеттік қызметтерді онлайн түрде алу</p>
-            </Link>
-            <Link href={"https://eotinish.kz/kk"}  target={"_blank"} className={'flex-1  text-[14px] gap-2'}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="https://www.gov.kz/uploads/2023/7/31/557ce713e82d4763d5bd4ae96b4e0cab_original.4211.png" alt="d" className={"h-[50px]"}/>
-              <p className={"mt-3"}>e-Otinish – Мемлекеттік органдарға өтініш беру</p>
-            </Link>
-            <Link href={"https://sb.egov.kz/smart-bridge/home"}  target={"_blank"} className={'flex-1 text-[14px] gap-2'}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="https://www.gov.kz/uploads/2019/6/19/9db49dbece24b92b6d6dd2a7d9c0b5eb_original.12820.svg" alt="d" className={"h-[50px]"}/>
-              <p className={"mt-3"}>Бизнеске мемлекеттік ақпараттық жүйелермен интеграциялануға көмектесетін Платформа</p>
-            </Link>
-          </div>
+          {/*<div className={'w-full flex my-10 gap-4'}>*/}
+          {/*  <Link href={"https://open.egov.kz/"} target={"_blank"} className={'flex-1  text-[14px] gap-2'}>*/}
+          {/*    /!* eslint-disable-next-line @next/next/no-img-element *!/*/}
+          {/*    <img src="https://www.gov.kz/uploads/2019/6/19/a1297e9e09f22c412ddfe056d3d4ed9c_original.19895.svg"*/}
+          {/*         alt="d" className={"h-[50px]"}/>*/}
+          {/*    <p className={"mt-3"}>НҚА әзірлеу мен бюджетті жасауда қатысу, ашық деректерді алу, мемлекеттік органдарға*/}
+          {/*      өтініш жіберу</p>*/}
+          {/*  </Link>*/}
+          {/*  <Link href={"https://egov.kz/cms/kk"} target={"_blank"} className={'flex-1 text-[14px] gap-2'}>*/}
+          {/*    /!* eslint-disable-next-line @next/next/no-img-element *!/*/}
+          {/*    <img src="https://www.gov.kz/uploads/2020/1/9/602c5a9aaa19882413e630395f7ceb31_original.6761.png" alt="d"*/}
+          {/*         className={"h-[50px]"}/>*/}
+          {/*    <p className={"mt-3"}>eGov.kz электрондық үкімет порталы – мемлекеттік қызметтерді онлайн түрде алу</p>*/}
+          {/*  </Link>*/}
+          {/*  <Link href={"https://eotinish.kz/kk"} target={"_blank"} className={'flex-1  text-[14px] gap-2'}>*/}
+          {/*    /!* eslint-disable-next-line @next/next/no-img-element *!/*/}
+          {/*    <img src="https://www.gov.kz/uploads/2023/7/31/557ce713e82d4763d5bd4ae96b4e0cab_original.4211.png" alt="d"*/}
+          {/*         className={"h-[50px]"}/>*/}
+          {/*    <p className={"mt-3"}>e-Otinish – Мемлекеттік органдарға өтініш беру</p>*/}
+          {/*  </Link>*/}
+          {/*  <Link href={"https://sb.egov.kz/smart-bridge/home"} target={"_blank"}*/}
+          {/*        className={'flex-1 text-[14px] gap-2'}>*/}
+          {/*    /!* eslint-disable-next-line @next/next/no-img-element *!/*/}
+          {/*    <img src="https://www.gov.kz/uploads/2019/6/19/9db49dbece24b92b6d6dd2a7d9c0b5eb_original.12820.svg"*/}
+          {/*         alt="d" className={"h-[50px]"}/>*/}
+          {/*    <p className={"mt-3"}>Бизнеске мемлекеттік ақпараттық жүйелермен интеграциялануға көмектесетін*/}
+          {/*      Платформа</p>*/}
+          {/*  </Link>*/}
+          {/*</div>*/}
+          <Banner/>
         </>
       </Container>
     </>

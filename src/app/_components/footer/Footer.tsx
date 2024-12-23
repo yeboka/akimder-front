@@ -1,6 +1,5 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import Image from "next/image";
 import { PhoneOutlined } from "@ant-design/icons";
 
 const Footer: React.FC = () => {
@@ -18,33 +17,41 @@ const Footer: React.FC = () => {
           {/* Left Section: Logo and Social Media Icons */}
           {/* Right Section: Navigation Links */}
           <div className="flex flex-col items-start gap-2">
-            <a href="https://www.gov.kz/memleket/entities/prokuror?lang=kk&ysclid=lrd6cu71p8886444077" className="text-[18px] hover:underline">
-              {locale === "ru" ? "Центр избирательной комиссии" : "Сайлау комиссиясының орталығы"}
+            <p className={"text-[18px] "}>{locale === "ru" ? "Государственные символы" : "Мемлекеттік рәміздер"}</p>
+            <a href="https://akorda.kz/kz/state_symbols/about_state_symbols" className="text-[16px] opacity-[0.9] hover:underline font-light">
+              {locale === "ru" ? "О государственных символах" : "Мемлекеттік рәміздер туралы"}
             </a>
-            <a href="https://www.election.gov.kz/" className="text-[18px] hover:underline">
-              {locale == "ru" ? "Главная прокуратура" : "Бас прокуратура"}
+            <a href="https://akorda.kz/kz/state_symbols/kazakhstan_flag/" className="text-[16px] opacity-[0.9] hover:underline font-light">
+              {locale == "ru" ? "Государственный Флаг Республики Казахстан" : "Қазақстан Республикасының Мемлекеттiк Туы"}
             </a>
-            <a href="https://www.gov.kz/memleket/entities/anticorruption?lang=ru" className="text-[18px] hover:underline">
-              Антикор
+            <a href="https://akorda.kz/kz/state_symbols/kazakhstan_emblem" className="text-[16px] opacity-[0.9] hover:underline font-light">
+              {locale == "ru" ? "Государственный Герб Республики Казахстан" : "Қазақстан Республикасының Мемлекеттiк Елтаңбасы"}
+            </a>
+            <a href="https://akorda.kz/kz/state_symbols/kazakhstan_anthem" className="text-[16px] opacity-[0.9] hover:underline font-light">
+              {locale == "ru" ? "Государственный Гимн Республики Казахстан" : "Қазақстан Республикасының Мемлекеттік Гимні"}
             </a>
           </div>
           <div className="flex flex-col items-start gap-2">
-            <a href="https://sud.gov.kz/rus" className="text-[18px] hover:underline">
-              {locale === "ru" ? "Верховный суд" : "Жоғарғы Сот"}
+            <a href="https://akorda.kz/kz/executive_office/ethics_commissioner" className="text-[16px] opacity-[0.9] hover:underline font-light">
+              {locale === "ru" ? "Уполномоченный по этике" : "Әдеп жөніндегі уәкіл"}
             </a>
-            <a href="https://senate.parlam.kz/ru-RU/about/deputies" className="text-[18px] hover:underline">
-              {locale === 'ru' ? "Депутаты Сената" : ""}
+            <p className={"text-[18px] "}>{locale === "ru" ? "Официальные документы" : "Ресми құжаттар"}</p>
+            <a href="https://akorda.kz/kz/addresses" className="text-[16px] opacity-[0.9] hover:underline font-light">
+              {locale === 'ru' ? "Послания" : "Жолдаулар"}
             </a>
-            <a href="https://mazhilis.parlam.kz/#/kk/home" className="text-[18px] hover:underline">
-              {locale === "ru" ? "Мажилис Парламента" : "Парламент Мәжілісі"}
+            <a href="https://akorda.kz/kz/official_documents/constitution" className="text-[16px] opacity-[0.9] hover:underline font-light">
+              {locale === "ru" ? "Конституция" : "Конституция"}
+            </a>
+            <a href="https://akorda.kz/kz/official_documents/strategies_and_programs" className="text-[16px] opacity-[0.9] hover:underline font-light">
+              {locale === "ru" ? "Стратегии и программы" : "Стратегиялар мен бағдарламалар"}
+            </a>
+            <a href="https://akorda.kz/kz/official_documents/constitutional_laws" className="text-[16px] opacity-[0.9] hover:underline font-light">
+              {locale === "ru" ? "Конституционные законы" : "Конституциялық заңдар"}
             </a>
           </div>
           <div className="flex flex-col items-start gap-2">
             <div className={'flex gap-3'}>
-              <Image src={'/lyra-icon-brand-whatsapp281.svg'} alt={"whatsApp"}  width={16} height={16}/> WhatsApp: +7-747-420-28-08
-            </div>
-            <div className={'flex gap-3'}>
-                <PhoneOutlined /> Active: +7-775-420-28-08
+              <PhoneOutlined /> Active: +7-775-420-28-08
             </div>
             <div className={'flex gap-3'}>
               <PhoneOutlined /> Beeline: +7-776-420-28-08

@@ -32,6 +32,7 @@ const AkimatForm = ({setIsFormOpen, akimat}) => {
     head_description_kk: '',
     head_description_en: '',
     parent_id: null,
+    type: 'regional', // Default type
   });
 
   const [akimatOptions, setAkimatOptions] = useState([]);
@@ -66,6 +67,10 @@ const AkimatForm = ({setIsFormOpen, akimat}) => {
     setFormData((prev) => ({ ...prev, parent_id: value }));
   };
 
+  const handleTypeChange = (value) => {
+    setFormData((prev) => ({ ...prev, type: value }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -77,100 +82,54 @@ const AkimatForm = ({setIsFormOpen, akimat}) => {
     setLoading(true);
     setResponseMessage('');
 
-    if (akimat) {
-      await axiosInstance.put(`/akimat/${akimat.key}`, formData)
-          .then(() => {
-            setResponseMessage('Данные успешно отправлены!');
-            setFormData({
-              title_ru: '',
-              title_kk: '',
-              title_en: '',
-              description_ru: '',
-              description_kk: '',
-              description_en: '',
-              address_ru: '',
-              address_kk: '',
-              address_en: '',
-              email: '',
-              contacts: '',
-              region_name_ru: '',
-              region_name_kk: '',
-              region_name_en: '',
-              region_image: '',
-              region_description_ru: '',
-              region_description_kk: '',
-              region_description_en: '',
-              head_name_ru: '',
-              head_name_kk: '',
-              head_name_en: '',
-              head_image: '',
-              head_description_ru: '',
-              head_description_kk: '',
-              head_description_en: '',
-              parent_id: null,
-            });
-            setIsFormOpen(false);
-          })
-          .catch((error) => {
-            if (error.response) {
-              setResponseMessage(`Ошибка: ${error.response.data.message || 'Не удалось отправить данные'}`);
-            } else {
-              setResponseMessage('Произошла ошибка сети. Попробуйте снова.');
-            }
-          })
-          .finally(() => {
-            setLoading(false)
-          });
-      return;
-    }
-
     try {
-      const response = await axiosInstance.post('/akimat', formData);
-
-      if (response.status === 201) {
-        setResponseMessage('Данные успешно отправлены!');
-        setFormData({
-          title_ru: '',
-          title_kk: '',
-          title_en: '',
-          description_ru: '',
-          description_kk: '',
-          description_en: '',
-          address_ru: '',
-          address_kk: '',
-          address_en: '',
-          email: '',
-          contacts: '',
-          region_name_ru: '',
-          region_name_kk: '',
-          region_name_en: '',
-          region_image: '',
-          region_description_ru: '',
-          region_description_kk: '',
-          region_description_en: '',
-          head_name_ru: '',
-          head_name_kk: '',
-          head_name_en: '',
-          head_image: '',
-          head_description_ru: '',
-          head_description_kk: '',
-          head_description_en: '',
-          parent_id: null,
-        });
-        setIsFormOpen(false)
-      }
-    } catch (error) {
-      if (error.response) {
-        setResponseMessage(`Ошибка: ${error.response.data.message || 'Не удалось отправить данные'}`);
-      } else if (error.request) {
-        setResponseMessage('Ошибка сети. Пожалуйста, попробуйте снова.');
+      if (akimat) {
+        await axiosInstance.put(`/akimat/${akimat.key}`, formData);
+        setResponseMessage('Данные успешно обновлены!');
       } else {
-        setResponseMessage(`Ошибка: ${error.message}`);
+        const response = await axiosInstance.post('/akimat', formData);
+        if (response.status === 201) {
+          setResponseMessage('Данные успешно отправлены!');
+        }
       }
+      setFormData({
+        title_ru: '',
+        title_kk: '',
+        title_en: '',
+        description_ru: '',
+        description_kk: '',
+        description_en: '',
+        address_ru: '',
+        address_kk: '',
+        address_en: '',
+        email: '',
+        contacts: '',
+        region_name_ru: '',
+        region_name_kk: '',
+        region_name_en: '',
+        region_image: '',
+        region_description_ru: '',
+        region_description_kk: '',
+        region_description_en: '',
+        head_name_ru: '',
+        head_name_kk: '',
+        head_name_en: '',
+        head_image: '',
+        head_description_ru: '',
+        head_description_kk: '',
+        head_description_en: '',
+        parent_id: null,
+        type: 'regional',
+      });
+      setIsFormOpen(false);
+    } catch (e) {
+      setResponseMessage('Произошла ошибка при отправке данных.');
+      console.log(e)
     } finally {
       setLoading(false);
     }
   };
+
 
   return (
       <div className="">
@@ -399,7 +358,18 @@ const AkimatForm = ({setIsFormOpen, akimat}) => {
                 className="border rounded-md border-gray-300 p-2 w-full"
             />
           </div>
-
+          <div>
+            <label className="block text-sm font-medium mb-1">Тип</label>
+            <Select
+                value={formData.type}
+                onChange={handleTypeChange}
+                className="w-full"
+                placeholder="Выберите тип"
+            >
+              <Option value="regional">Областной</Option>
+              <Option value="district">Региональный</Option>
+            </Select>
+          </div>
           <div>
             <label className="block text-sm font-medium mb-1">Родительский акимат</label>
             <Select
