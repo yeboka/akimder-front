@@ -34,10 +34,10 @@ export default function Home() {
           <div className={"w-full relative  max-h-[204px] h-64"}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={'https://www.gov.kz/static/media/ornament.8ce1d830.svg'} alt={''}
-                 className={'absolute left-0 top-0 opacity-[0.4]'}/>
+                 className={'absolute left-0 top-0 '}/>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={'/герб_казахстана_чб-removebg-preview.png'} width={250} alt={''}
-                 className={'absolute -right-[100px] top-0 opacity-[0.4]'}/>
+            <img src={'/gerb.svg'} width={300} alt={''}
+                 className={'absolute -right-[100px] -top-[100px]'}/>
           </div>
           <div className={'w-full absolute top-1 flex justify-center sm:my-10 md:my-14 lg:my-20 xl:my-24 '}>
             <Search/>
