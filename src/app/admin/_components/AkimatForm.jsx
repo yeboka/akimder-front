@@ -368,6 +368,7 @@ const AkimatForm = ({setIsFormOpen, akimat}) => {
             >
               <Option value="regional">Областной</Option>
               <Option value="district">Региональный</Option>
+              <Option value="village">Сельский</Option>
             </Select>
           </div>
           <div>

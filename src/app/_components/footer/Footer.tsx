@@ -1,6 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { PhoneOutlined } from "@ant-design/icons";
+import Image from "next/image";
+import Link from "next/link";
 
 const Footer: React.FC = () => {
   const [locale, setLocale] = useState<string>("ru")
@@ -55,6 +57,20 @@ const Footer: React.FC = () => {
             </div>
             <div className={'flex gap-3'}>
               <PhoneOutlined /> Beeline: +7-776-420-28-08
+            </div>
+            <div className={'flex gap-3 items-center'}>
+              <Link href={"https://www.facebook.com/share/14QLJgMgyF/?mibextid=wwXIfr"} target={"_blank"}>
+                <Image src={'/icons8-facebook-64.png'} alt={''} width={25} height={25}/>
+              </Link>
+              <Link href={"https://www.instagram.com/akimpress_kz?igsh=MTd2bjZ4Mm9wN3J3"} target={"_blank"}>
+                <Image src={'/lyra-icon-InstagramLogo.svg'} alt={''} width={20} height={20}/>
+              </Link>
+              <Link href={"https://t.me/akimpress_kz"} target={"_blank"}>
+                <Image src={'/lyra-icon-TelegramLogo.svg'} alt={''} width={20} height={20} />
+              </Link>
+              <Link href={"https://www.tiktok.com/@akimpress.kz?_t=8sQJoT2d3uX&_r=1"} target={"_blank"}>
+                <Image src={'/icons8-tiktok.svg'} alt={''} width={25} height={25}/>
+              </Link>
             </div>
           </div>
         </div>
