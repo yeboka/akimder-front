@@ -136,50 +136,56 @@ const Page = () => {
                 </div>
                 }
             </Container>
-            <Container className={'mb-7'}>
-                <h1 className={'w-full text-[42px] mt-8 mb-3 font-semibold'}>
-                    {
-                        <span>{locale === "ru" ? "Районные акиматы" : "Аудандық әкімдіктер"}</span>
-                    }
-                </h1>
-                <div className={'w-full flex gap-[30px]'}>
-                    {
-                        akimatInfo?.childs.length === 0 &&
-                        <p>{locale === "ru" ? "Нет районных акиматов" : "Аудандық әкімдіктер жоқ"}</p>
-                    }
-                    {akimatInfo?.childs.map((item) => (
-                        <Link
-                            href={`/area/${item.id}`}
-                            key={item.id}
-                            className={'font-medium cursor-pointer flex items-center justify-start hover:underline gap-2'}
-                        >
-                            <span className={'w-[5px] h-[5px] rounded-full bg-black'}/>
-                            <span>
+            {
+                akimatInfo.type !== "village" && <Container className={'mb-7'}>
+                    <h1 className={'w-full text-[42px] mt-8 mb-3 font-semibold'}>
+                        {
+                            akimatInfo.type === "regional" ?
+                                <span>{locale === "ru" ? "Районные акиматы" : "Аудандық әкімдіктер"}</span>
+                                :
+                                <span>{locale === "ru" ? "Сельские акиматы" : "Ауылдық әкімдіктер"}</span>
+
+                        }
+                    </h1>
+                    <div className={'w-full flex gap-[30px]'}>
+                        {
+                            akimatInfo?.childs.length === 0 &&
+                            <p>{locale === "ru" ? "Нет районных акиматов" : "Аудандық әкімдіктер жоқ"}</p>
+                        }
+                        {akimatInfo?.childs.map((item) => (
+                            <Link
+                                href={`/area/${item.id}`}
+                                key={item.id}
+                                className={'font-medium cursor-pointer flex items-center justify-start hover:underline gap-2'}
+                            >
+                                <span className={'w-[5px] h-[5px] rounded-full bg-black'}/>
+                                <span>
               {locale === "ru" ? item.title_ru : item.title_kk}
             </span>
-                        </Link>
-                    ))}
-                </div>
-            </Container>
-                <Carousel arrows autoplay={true}>
-                    {advs.map((item) => (
-                        <div key={item.id}>
-                            <a href={item.link}>
-                                <div
-                                    href={item.link}
-                                    style={{
-                                        backgroundImage: `url("${item.image_url}")`, // Ensure it's a valid URL format
-                                        backgroundSize: 'cover',
-                                        backgroundColor: "blue",// Ensures the image covers the entire div
-                                        backgroundPosition: 'center', // Centers the image within the div
-                                        height: '160px', // Make sure the div has height
-                                    }}
-                                >
-                                </div>
-                            </a>
-                        </div>
-                    ))}
-                </Carousel>
+                            </Link>
+                        ))}
+                    </div>
+                </Container>
+            }
+            <Carousel arrows autoplay={true}>
+                {advs.map((item) => (
+                    <div key={item.id}>
+                        <a href={item.link}>
+                            <div
+                                href={item.link}
+                                style={{
+                                    backgroundImage: `url("${item.image_url}")`, // Ensure it's a valid URL format
+                                    backgroundSize: 'cover',
+                                    backgroundColor: "blue",// Ensures the image covers the entire div
+                                    backgroundPosition: 'center', // Centers the image within the div
+                                    height: '160px', // Make sure the div has height
+                                }}
+                            >
+                            </div>
+                        </a>
+                    </div>
+                ))}
+            </Carousel>
 
             <Container className={'mb-5'}>
                 <h1 className={'text-[35px] w-full font-semibold'}>
