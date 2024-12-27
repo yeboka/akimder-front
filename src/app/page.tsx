@@ -29,15 +29,15 @@ export default function Home() {
 
   return (
     <>
-      <Container className={'bg-secondary overflow-hidden '}>
+      <Container className={'bg-secondary overflow-hidden relative'}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={'/gerb.svg'} width={300} alt={''}
+             className={'absolute -right-[150px] -top-[100px]'}/>
         <div className={'w-full max-h-[204px]  h-64 relative'}>
           <div className={"w-full relative  max-h-[204px] h-64"}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={'https://www.gov.kz/static/media/ornament.8ce1d830.svg'} alt={''}
                  className={'absolute left-0 top-0 '}/>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={'/gerb.svg'} width={300} alt={''}
-                 className={'absolute -right-[100px] -top-[100px]'}/>
           </div>
           <div className={'w-full absolute top-1 flex justify-center sm:my-10 md:my-14 lg:my-20 xl:my-24 '}>
             <Search/>
@@ -49,7 +49,7 @@ export default function Home() {
           <div className={'w-full flex flex-col gap-y-8 my-10'}>
             <h1 className={'text-[42px] font-semibold'}>
               {
-                <span>{locale === "ru" ? "Акиматы" : "Акімдіктер"}</span>
+                <span>{locale === "ru" ? "Акиматы" : "Әкімдіктер"}</span>
               }
             </h1>
             <div className={'flex  flex-col-reverse  items-start md:flex-row gap-5 justify-between'}>
@@ -87,7 +87,7 @@ export default function Home() {
                   <Link href={"https://primeminister.kz/ru/government/composition/bektenov"} className={'text-[12px]'}>
                     {
                       locale === "ru" ?
-                        <>Премьер-министр Республики Казахстан <br/> <strong>Бектенов Олжас Абаевич</strong> </>
+                        <>Премьер-министр <br/> Республики Казахстан <br/> <strong>Бектенов Олжас Абаевич</strong> </>
                         :
                         <>Қазақстан Республикасының <br/> Премьер-Министрі <br/> <strong>Олжас Абайұлы
                           Бектенов</strong></>
