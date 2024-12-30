@@ -50,6 +50,9 @@ const Footer: React.FC = () => {
             <a href="https://akorda.kz/kz/executive_office/ethics_commissioner" className="text-[16px] opacity-[0.9] hover:underline font-light mt-5">
               {locale === "ru" ? "Уполномоченный по этике" : "Әдеп жөніндегі уәкіл"}
             </a>
+            <a href="https://gostest.kz/" className="text-[16px] opacity-[0.9] hover:underline font-light mt-5">
+            {locale === "ru" ? "Государственный тест" : "Мемлекеттік тест"}
+          </a>
           </div>
           <div className="flex flex-col items-start gap-2">
             <div className={'flex gap-3'}>
