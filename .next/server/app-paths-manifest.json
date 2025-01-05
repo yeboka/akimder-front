@@ -1,8 +1,8 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/area/[id]/page": "app/area/[id]/page.js",
-  "/page": "app/page.js",
-  "/admin/page": "app/admin/page.js",
+  "/login/page": "app/login/page.js",
   "/news/[id]/page": "app/news/[id]/page.js",
-  "/login/page": "app/login/page.js"
+  "/admin/page": "app/admin/page.js",
+  "/page": "app/page.js"
 }

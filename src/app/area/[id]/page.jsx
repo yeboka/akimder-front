@@ -261,7 +261,7 @@ const Text = ({text, isShowMore, setIsShowMore, locale}) => {
 
     return <p className="text-wrap">
         {isShowMore ? text : text?.substring(0, 400)}
-        {text.length > 210 && <p className="hover:cursor-pointer text-blue-700" onClick={() => onShowMoreClick()}>{
+        {text !== null && text.length > 400 && <p className="hover:cursor-pointer text-blue-700" onClick={() => onShowMoreClick()}>{
             locale === "ru" ?
                 !isShowMore ? "Посмотреть больше" : "Скрыть"
                 :
