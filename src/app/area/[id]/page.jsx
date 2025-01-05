@@ -209,9 +209,9 @@ const Page = () => {
                         <p className="text-wrap">
                             {
                                 locale === "ru" ?
-                                    <Text text={akimatInfo.region_description_ru} isShowMore={showMoreRegionInfo} setIsShowMore={setShowMoreRegionInfo} locale={locale}/>
+                                    <Text text={akimatInfo.description_ru} isShowMore={showMoreRegionInfo} setIsShowMore={setShowMoreRegionInfo} locale={locale}/>
                                     :
-                                    <Text text={akimatInfo.region_description_kk} isShowMore={showMoreRegionInfo} setIsShowMore={setShowMoreRegionInfo} locale={locale}/>
+                                    <Text text={akimatInfo.description_kk} isShowMore={showMoreRegionInfo} setIsShowMore={setShowMoreRegionInfo} locale={locale}/>
                             }
                         </p>
                     </div>
