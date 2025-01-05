@@ -21,6 +21,8 @@ const Page = () => {
     const [newsData, setNewsData] = useState([]);
     const [advs, setAdvs] = useState([]);
     const [loading, setLoading] = useState(true)
+    const [showMoreHeadInfo, setShowMoreHeadInfo] = useState(false)
+    const [showMoreRegionInfo, setShowMoreRegionInfo] = useState(false)
     const params = useParams()
     const [locale, setLocale] = useState("ru")
     useEffect(() => {
@@ -200,12 +202,17 @@ const Page = () => {
                             backgroundImage: `url("${akimatInfo.region_image}")`
                         }}
                     ></div>
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-5 max-w-[60%]">
                         <h3 className="text-[20px] text-semibold">
                             {locale === "ru" ? akimatInfo.region_name_ru : akimatInfo.region_name_kk}
                         </h3>
-                        <p>
-                            {locale === "ru" ? akimatInfo.region_description_ru : akimatInfo.region_description_kk}
+                        <p className="text-wrap">
+                            {
+                                locale === "ru" ?
+                                    <Text text={akimatInfo.region_description_ru} isShowMore={showMoreRegionInfo} setIsShowMore={setShowMoreRegionInfo} locale={locale}/>
+                                    :
+                                    <Text text={akimatInfo.region_description_kk} isShowMore={showMoreRegionInfo} setIsShowMore={setShowMoreRegionInfo} locale={locale}/>
+                            }
                         </p>
                     </div>
                 </div>
@@ -217,21 +224,24 @@ const Page = () => {
                         <span>{locale === "ru" ? "Руководство" : "Басшылық"}</span>
                     }
                 </h1>
-                <div className="w-full flex gap-4 p-4 bg-[#0A478C17]">
+                <div className={`w-full flex gap-4 p-4 bg-[#0A478C17]`}>
                     <div
                         className={`bg-cover bg-center bg-gray-300 w-[200px] h-[230px] ${!akimatInfo.head_image ? "animate-pulse" : ""}`}
                         style={{
                             backgroundImage: `url("${akimatInfo.head_image}")`
                         }}
                     ></div>
-                    <div className="flex flex-col gap-5">
-                        <h3 className="text-[20px] text-semibold">
-                            {akimatInfo.head_name}
+                    <div className="flex flex-col gap-5 max-w-[60%]">
+                        <h3 className="text-[20px] text-semibold text-wrap">
                             {locale === "ru" ? akimatInfo.head_name_ru : akimatInfo.head_name_kk}
                         </h3>
-                        <p>
-                            {akimatInfo.head_description}
-                            {locale === "ru" ? akimatInfo.head_description_ru : akimatInfo.head_description_kk}
+                        <p className="text-wrap">
+                            {
+                                locale === "ru" ?
+                                    <Text text={akimatInfo.head_description_ru} isShowMore={showMoreHeadInfo} setIsShowMore={setShowMoreHeadInfo} locale={locale}/>
+                                    :
+                                    <Text text={akimatInfo.head_description_kk} isShowMore={showMoreHeadInfo} setIsShowMore={setShowMoreHeadInfo} locale={locale}/>
+                            }
                         </p>
                     </div>
                 </div>
@@ -243,23 +253,21 @@ const Page = () => {
     );
 };
 
-// EventCard.tsx (or within your page component)
-//
-// interface EventCardProps {
-//   date: string;
-//   title: string;
-// }
-//
-// export const EventCard: React.FC<EventCardProps> = ({ date, title }) => {
-//   return (
-//     <div className="border p-4 w-full shadow-sm">
-//       <h3 className="text-lg font-bold">{date}</h3>
-//       <p className="text-gray-600 mt-2">{title}</p>
-//       {/*<button className="mt-4 bg-gray-200 text-gray-800 px-4 py-2">*/}
-//       {/*  Конкурс*/}
-//       {/*</button>*/}
-//     </div>
-//   );
-// };
+const Text = ({text, isShowMore, setIsShowMore, locale}) => {
+
+    const onShowMoreClick = () => {
+        setIsShowMore(prev => !prev)
+    }
+
+    return <p className="text-wrap">
+        {isShowMore ? text : text?.substring(0, 400)}
+        {text.length > 210 && <p className="hover:cursor-pointer text-blue-700" onClick={() => onShowMoreClick()}>{
+            locale === "ru" ?
+                !isShowMore ? "Посмотреть больше" : "Скрыть"
+                :
+                !isShowMore ? "Көбірек оқу" : "Жасыру"
+        }</p>}
+    </p>
+}
 
 export default Page;
