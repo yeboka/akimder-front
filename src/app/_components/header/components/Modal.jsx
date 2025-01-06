@@ -125,6 +125,13 @@ export default function Modal({ isOpen, onClose }) {
   const [selectedItem, setSelectedItem] = useState(null);
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true)
+  const [locale, setLocale] = useState("ru")
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setLocale(window.localStorage.getItem("locale") || "")
+    }
+  }, [])
 
   useEffect(() => {
     setLoading(true)
@@ -182,22 +189,30 @@ export default function Modal({ isOpen, onClose }) {
           {/* Left Column */}
           <div className="h-[100vh] w-1/2 overflow-y-auto bg-gray-100">
             <div className="flex space-x-4 mt-4">
-              {Object.keys(data).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => {
-                    setSelectedTab(tab);
-                    setSelectedItem(null); // Reset selected item when tab changes
-                  }}
-                  className={`px-4 py-2 ${
-                    selectedTab === tab
-                      ? "border-b-2 border-primary text-primary font-bold"
-                      : "text-gray-500"
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
+              {Object.keys(data).map((tab) => {
+                let tabName = tab;
+                if (tab === "Акимат") {
+                  tabName = locale === "ru" ? "Акимат" : locale === "en" ? "Akimat" : "Әкімдік"
+                } else if (tab === "Маслихаты") {
+                  tabName = locale === "ru" ? "Маслихаты" : locale === "en" ? "Maslikhats" : "Мәслихаттар"
+                }
+                return (
+                    <button
+                        key={tab}
+                        onClick={() => {
+                          setSelectedTab(tab);
+                          setSelectedItem(null); // Reset selected item when tab changes
+                        }}
+                        className={`px-4 py-2 ${
+                            selectedTab === tab
+                                ? "border-b-2 border-primary text-primary font-bold"
+                                : "text-gray-500"
+                        }`}
+                    >
+                      {tabName}
+                    </button>
+                )
+              })}
             </div>
 
             <ul>
@@ -227,18 +242,20 @@ export default function Modal({ isOpen, onClose }) {
                   rel="noopener noreferrer"
                   className="text-primary hover:underline mb-5 block"
                 >
-                  Перейти на страницу →
+                  {locale === "ru" ? "Перейти на страницу" : locale === "en" ? "Go to the page" : "Бетке өту"} →
                 </a>
                 <p className="mb-8">{selectedItem.description}</p>
                 <div className="mb-16">
                   <button className="px-4 py-2 border border-primary text-primary hover:bg-primary50 mr-2">
-                    Онлайн-приемная
+                    {locale === "ru" ? "Онлайн-приемная" : locale === "en" ? "Online reception" : "Онлайн қабылдау бөлмесі"}
                   </button>
                   <button className="px-4 py-2 border border-primary text-primary hover:bg-primary50 mr-2">
-                    Написать сообщение
+                    {locale === "ru" ? "Написать сообщение" : locale === "en" ? "Write a message" : "Хабарлама жазу"}
                   </button>
                 </div>
-                <p>Адрес: </p>
+                <p>
+
+                  {locale === "ru" ? "Адрес" : locale === "en" ? "Address" : "Мекен-жайы"}: </p>
                 <p className="mb-4">{selectedItem.address}</p>
                 <p>
                   E-mail:{" "}
@@ -249,7 +266,9 @@ export default function Modal({ isOpen, onClose }) {
                     {selectedItem.email}
                   </a>
                 </p>
-                <p className="mt-4">Контакты:</p>
+                <p className="mt-4">
+                  {locale === "ru" ? "Контакты" : locale === "en" ? "Contacts" : "Байланыс"}:
+                </p>
                 <div className="flex space-x-4">
                   {selectedItem.contacts.map((contact, index) => (
                     <a
@@ -272,7 +291,9 @@ export default function Modal({ isOpen, onClose }) {
                 </div>
               </div>
             ) : (
-              <p className="text-gray-500">Выберите элемент для просмотра.</p>
+              <p className="text-gray-500">
+                {locale === "ru" ? "Выберите элемент для просмотра" : locale === "en" ? "Select an item to view" : "Көру үшін элементті таңдаңыз"}
+              </p>
             )}
           </div>
         </div>

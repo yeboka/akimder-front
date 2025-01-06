@@ -60,7 +60,7 @@ const Page = () => {
                 <div className={'w-full'}>
                     <div className={'w-full  flex justify-between sm:my-10 md:my-14 lg:my-20 xl:my-24'}>
                         <p className={'text-white text-[24px] font-bold leading-[28.4px]'}>
-                            {locale === "ru" ? akimatInfo?.title_ru : akimatInfo?.title_kk}
+                            {akimatInfo[`title_${locale}`]}
                         </p>
                         <div className={'flex gap-[30px]'}>
                             <Image src={InstagramIcon} alt={''} width={20} height={20}/>
@@ -73,13 +73,14 @@ const Page = () => {
             <hr/>
             <Container className={'py-8'}>
                 <div className={'w-full'}>
-                    <Link href={'/'}>{locale === "ru" ? "Главная страница" : "Басты бет"}</Link> /
                     <Link
-                        href={`/area/${params.id}`}>{locale === "ru" ? akimatInfo?.title_ru : akimatInfo?.title_kk}</Link> /
+                        href={'/'}>{locale === "ru" ? "Главная страница" : locale === "en" ? "Main page" : "Басты бет"}</Link> /
+                    <Link
+                        href={`/area/${params.id}`}>{akimatInfo[`title_${locale}`]}</Link> /
                     {/*<Link href={'/area/1'}>Пресс центр</Link>*/}
                 </div>
                 <h1 className={'w-full text-[42px] my-8 font-semibold'}>
-                    {locale === "ru" ? "Главные новости" : "Басты жаңалықтар"}
+                    {locale === "ru" ? "Главные новости" : locale === "en" ? "Main news" : "Басты жаңалықтар"}
                 </h1>
                 {newsData && newsData.length > 0 && <div className={'flex w-full mb-10'}>
                     <div className={'w-3/4 flex flex-col gap-y-3'}>
@@ -143,16 +144,16 @@ const Page = () => {
                     <h1 className={'w-full text-[42px] mt-8 mb-3 font-semibold'}>
                         {
                             akimatInfo.type === "regional" ?
-                                <span>{locale === "ru" ? "Районные акиматы" : "Аудандық әкімдіктер"}</span>
+                                <span>{locale === "ru" ? "Районные акиматы" : locale === "en" ? "Regional akimats" : "Аудандық әкімдіктер"}</span>
                                 :
-                                <span>{locale === "ru" ? "Сельские акиматы" : "Ауылдық әкімдіктер"}</span>
+                                <span>{locale === "ru" ? "Сельские акиматы" : locale === "en" ? "Rural akimats" : "Ауылдық әкімдіктер"}</span>
 
                         }
                     </h1>
                     <div className={'w-full flex gap-[30px]'}>
                         {
                             akimatInfo?.childs.length === 0 &&
-                            <p>{locale === "ru" ? "Нет районных акиматов" : "Аудандық әкімдіктер жоқ"}</p>
+                            <p>{locale === "ru" ? "Нет районных акиматов" : locale === "en" ? "There are no district akimats" : "Аудандық әкімдіктер жоқ"}</p>
                         }
                         {akimatInfo?.childs.map((item) => (
                             <Link
@@ -162,8 +163,8 @@ const Page = () => {
                             >
                                 <span className={'w-[5px] h-[5px] rounded-full bg-black'}/>
                                 <span>
-              {locale === "ru" ? item.title_ru : item.title_kk}
-            </span>
+                                    {item[`title_${locale}`]}
+                                </span>
                             </Link>
                         ))}
                     </div>
@@ -192,7 +193,7 @@ const Page = () => {
             <Container className={'mb-5'}>
                 <h1 className={'text-[35px] w-full font-semibold'}>
                     {
-                        <span>{locale === "ru" ? "Об области" : "Облыс туралы"}</span>
+                        <span>{locale === "ru" ? "Об области" : locale === "en" ? "About the region" : "Облыс туралы"}</span>
                     }
                 </h1>
                 <div className="w-full flex gap-4">
@@ -204,15 +205,11 @@ const Page = () => {
                     ></div>
                     <div className="flex flex-col gap-5 max-w-[60%]">
                         <h3 className="text-[20px] text-semibold">
-                            {locale === "ru" ? akimatInfo.region_name_ru : akimatInfo.region_name_kk}
+                            {akimatInfo[`region_name_${locale}`]}
                         </h3>
                         <p className="text-wrap">
-                            {
-                                locale === "ru" ?
-                                    <Text text={akimatInfo.description_ru} isShowMore={showMoreRegionInfo} setIsShowMore={setShowMoreRegionInfo} locale={locale}/>
-                                    :
-                                    <Text text={akimatInfo.description_kk} isShowMore={showMoreRegionInfo} setIsShowMore={setShowMoreRegionInfo} locale={locale}/>
-                            }
+                            <Text text={akimatInfo[`description_${locale}`]} isShowMore={showMoreRegionInfo}
+                                  setIsShowMore={setShowMoreRegionInfo} locale={locale}/>
                         </p>
                     </div>
                 </div>
@@ -221,7 +218,7 @@ const Page = () => {
             <Container className={'mb-5'}>
                 <h1 className={'text-[35px] w-full font-semibold'}>
                     {
-                        <span>{locale === "ru" ? "Руководство" : "Басшылық"}</span>
+                        <span>{locale === "ru" ? "Руководство" : locale === "en" ? "Management" : "Басшылық"}</span>
                     }
                 </h1>
                 <div className={`w-full flex gap-4 p-4 bg-[#0A478C17]`}>
@@ -233,15 +230,11 @@ const Page = () => {
                     ></div>
                     <div className="flex flex-col gap-5 max-w-[60%]">
                         <h3 className="text-[20px] text-semibold text-wrap">
-                            {locale === "ru" ? akimatInfo.head_name_ru : akimatInfo.head_name_kk}
+                            {akimatInfo[`head_name_${locale}`]}
                         </h3>
                         <p className="text-wrap">
-                            {
-                                locale === "ru" ?
-                                    <Text text={akimatInfo.head_description_ru} isShowMore={showMoreHeadInfo} setIsShowMore={setShowMoreHeadInfo} locale={locale}/>
-                                    :
-                                    <Text text={akimatInfo.head_description_kk} isShowMore={showMoreHeadInfo} setIsShowMore={setShowMoreHeadInfo} locale={locale}/>
-                            }
+                            <Text text={akimatInfo[`head_description_${locale}`]} isShowMore={showMoreHeadInfo}
+                                  setIsShowMore={setShowMoreHeadInfo} locale={locale}/>
                         </p>
                     </div>
                 </div>
@@ -261,12 +254,16 @@ const Text = ({text, isShowMore, setIsShowMore, locale}) => {
 
     return <p className="text-wrap">
         {isShowMore ? text : text?.substring(0, 400)}
-        {text !== null && text.length > 400 && <p className="hover:cursor-pointer text-blue-700" onClick={() => onShowMoreClick()}>{
-            locale === "ru" ?
-                !isShowMore ? "Посмотреть больше" : "Скрыть"
-                :
-                !isShowMore ? "Көбірек оқу" : "Жасыру"
-        }</p>}
+        {text !== null && text.length > 400 &&
+            <p className="hover:cursor-pointer text-blue-700" onClick={() => onShowMoreClick()}>{
+                locale === "ru" ?
+                    !isShowMore ? "Посмотреть больше" : "Скрыть"
+                    :
+                locale === "en" ?
+                    !isShowMore ? "See more" : "Hide"
+                    :
+                    !isShowMore ? "Көбірек оқу" : "Жасыру"
+            }</p>}
     </p>
 }
 

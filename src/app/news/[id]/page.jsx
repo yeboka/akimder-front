@@ -11,7 +11,7 @@ import Link from "next/link";
 import axiosInstance from "@/service";
 import {useParams} from "next/navigation";
 import {format} from "date-fns";
-import {kk, ru} from "date-fns/locale";
+import {kk, ru, enUS} from "date-fns/locale";
 
 const Page = () => {
 
@@ -69,14 +69,14 @@ const Page = () => {
                 <div className={'flex flex-col w-full mt-5'}>
                     <div className={'flex flex-col w-full'}>
                         <div className={'w-full my-4'}>
-                            <Link href={'/'}>{locale === "ru" ? "Главная страница" : "Басты бет"}</Link> / <Link
+                            <Link href={'/'}>{locale === "ru" ? "Главная страница" : locale === "en" ? "Main page" : "Басты бет"}</Link> / <Link
                             href={'/area'}>{newsData.akimat_name}</Link>
                             {/*/ <Link href={'/area/1'}>Пресс центр</Link>*/}
                         </div>
                         <h1 className={'w-3/4 text-[42px] font-semibold'}>{newsData.title}</h1>
                         <div className={'flex gap-x-[21px] text-[#7F7C7C] mb-6'}>
                             <p>
-                                {new Date(newsData.createdAt?.toString()).toLocaleDateString('ru-RU', {
+                                {new Date(newsData.createdAt?.toString()).toLocaleDateString(locale, {
                                     day: 'numeric',
                                     month: 'long'
                                 })}
@@ -118,7 +118,7 @@ const Page = () => {
                         <div className={'w-1/4 flex flex-col px-2 mb-8'}>
                             <div className={'flex text-[16px] bg-primary w-full'}>
                                 <div
-                                    className={'flex flex-1 text-white justify-center py-2'}>{locale === "ru" ? "Последние события" : "Соңғы оқиғалар"}</div>
+                                    className={'flex flex-1 text-white justify-center py-2'}>{locale === "ru" ? "Последние события" : locale === "en" ? "Recent events" : "Соңғы оқиғалар"}</div>
                             </div>
                             <div className={'flex flex-col w-full'}>
                                 {
@@ -129,7 +129,7 @@ const Page = () => {
                                             </h3>
                                             <div className={'flex gap-x-[16px] text-[#7F7C7C] mb-6 text-[16px]'}>
                                                 <p>
-                                                    {new Date(item.createdAt?.toString()) ? format(new Date(new Date(item.createdAt?.toString())), 'd MMMM', {locale: locale === "ru" ? ru : kk}) : ''}
+                                                    {new Date(item.createdAt?.toString()) ? format(new Date(new Date(item.createdAt?.toString())), 'd MMMM', {locale: locale === "ru" ? ru : locale === "en" ? enUS : kk}) : ''}
                                                 </p>
                                                 <p className={'flex gap-x-1'}>
                                                     <Image src={Eye} alt={""}/>

@@ -49,14 +49,14 @@ export default function Home() {
           <div className={'w-full flex flex-col gap-y-8 my-10'}>
             <h1 className={'text-[42px] font-semibold'}>
               {
-                <span>{locale === "ru" ? "Акиматы" : "Әкімдіктер"}</span>
+                <span>{locale === "ru" ? "Акиматы" : locale === "en" ? "Akimats" : "Әкімдіктер"}</span>
               }
             </h1>
             <div className={'flex  flex-col-reverse  items-start md:flex-row gap-5 justify-between'}>
               <div>
                 <RegionCards onClick={onRegionClick}/>
                 <h1 className={'text-[42px] font-semibold mb-10 mt-10'}>
-                  {locale === "ru" ? "Новости страны" : "Ел жаңалықтары"}
+                  {locale === "ru" ? "Новости страны" : locale === "en" ? "Country News" : "Ел жаңалықтары"}
                 </h1>
                 <NewsCards/>
               </div>
@@ -73,6 +73,9 @@ export default function Home() {
                       locale === "ru" ?
                         <>Президент Республики Казахстан<br/> <strong>Токаев Касым-Жомарт Кемелевич</strong></>
                         :
+                        locale === "en" ?
+                        <>President of The<br/> Republic of Kazakhstan<br/> <strong>Kassym-Jomart Tokayev</strong></>
+                          :
                         <>Қазақстан Республикасының Президенті<br/> <strong>Қасым-Жомарт Кемелұлы Тоқаев</strong></>
                     }
                   </Link>
@@ -89,6 +92,9 @@ export default function Home() {
                       locale === "ru" ?
                         <>Премьер-министр <br/> Республики Казахстан <br/> <strong>Бектенов Олжас Абаевич</strong> </>
                         :
+                        locale === "en" ?
+                          <>Prime Minister of The<br/> Republic of Kazakhstan<br/> <strong>Olzhas Bektenov</strong></>
+                          :
                         <>Қазақстан Республикасының <br/> Премьер-Министрі <br/> <strong>Олжас Абайұлы
                           Бектенов</strong></>
                     }

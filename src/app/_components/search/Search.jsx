@@ -45,7 +45,7 @@ const Search = () => {
     <div className="flex items-center w-full max-w-[720px] bg-white z-50 relative">
       <input
         type="text"
-        placeholder={locale === "ru" ? "Поиск" : "Іздеу"}
+        placeholder={locale === "ru" ? "Поиск" : locale === "en" ? "Search" : "Іздеу"}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         className="flex-grow px-4 text-gray-700 placeholder-gray-400 font-black outline-none w-full"

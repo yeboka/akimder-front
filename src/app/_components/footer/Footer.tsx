@@ -19,39 +19,39 @@ const Footer: React.FC = () => {
           {/* Left Section: Logo and Social Media Icons */}
           {/* Right Section: Navigation Links */}
           <div className="flex flex-col items-start gap-2">
-            <p className={"text-[18px] "}>{locale === "ru" ? "Государственные символы" : "Мемлекеттік рәміздер"}</p>
+            <p className={"text-[18px] "}>{locale === "ru" ? "Государственные символы" : locale === "en" ? "State symbols" : "Мемлекеттік рәміздер"}</p>
             <a href="https://akorda.kz/kz/state_symbols/about_state_symbols" className="text-[16px] opacity-[0.9] hover:underline font-light">
-              {locale === "ru" ? "О государственных символах" : "Мемлекеттік рәміздер туралы"}
+              {locale === "ru" ? "О государственных символах" : locale === "en" ? "About state symbols" : "Мемлекеттік рәміздер туралы"}
             </a>
             <a href="https://akorda.kz/kz/state_symbols/kazakhstan_flag/" className="text-[16px] opacity-[0.9] hover:underline font-light">
-              {locale == "ru" ? "Государственный Флаг Республики Казахстан" : "Қазақстан Республикасының Мемлекеттiк Туы"}
+              {locale == "ru" ? "Государственный Флаг Республики Казахстан" : locale === "en" ? "The National Flag of the Republic of Kazakhstan" :  "Қазақстан Республикасының Мемлекеттiк Туы"}
             </a>
             <a href="https://akorda.kz/kz/state_symbols/kazakhstan_emblem" className="text-[16px] opacity-[0.9] hover:underline font-light">
-              {locale == "ru" ? "Государственный Герб Республики Казахстан" : "Қазақстан Республикасының Мемлекеттiк Елтаңбасы"}
+              {locale == "ru" ? "Государственный Герб Республики Казахстан" : locale === "en" ? "The National Coat of Arms of the Republic of Kazakhstan" : "Қазақстан Республикасының Мемлекеттiк Елтаңбасы"}
             </a>
             <a href="https://akorda.kz/kz/state_symbols/kazakhstan_anthem" className="text-[16px] opacity-[0.9] hover:underline font-light">
-              {locale == "ru" ? "Государственный Гимн Республики Казахстан" : "Қазақстан Республикасының Мемлекеттік Гимні"}
+              {locale == "ru" ? "Государственный Гимн Республики Казахстан" : locale === "en" ? "The National Anthem of the Republic of Kazakhstan" : "Қазақстан Республикасының Мемлекеттік Гимні"}
             </a>
           </div>
           <div className="flex flex-col items-start gap-2">
-            <p className={"text-[18px] "}>{locale === "ru" ? "Официальные документы" : "Ресми құжаттар"}</p>
+            <p className={"text-[18px] "}>{locale === "ru" ? "Официальные документы" : locale === "en" ? "Official documents" : "Ресми құжаттар"}</p>
             <a href="https://akorda.kz/kz/official_documents/constitution" className="text-[16px] opacity-[0.9] hover:underline font-light">
-              {locale === "ru" ? "Конституция" : "Конституция"}
+              {locale === "ru" ? "Конституция" : locale === "en" ? "The Constitution" :  "Конституция"}
             </a>
             <a href="https://akorda.kz/kz/official_documents/constitutional_laws" className="text-[16px] opacity-[0.9] hover:underline font-light">
-              {locale === "ru" ? "Конституционные законы" : "Конституциялық заңдар"}
+              {locale === "ru" ? "Конституционные законы" : locale === "en" ? "Constitutional laws" : "Конституциялық заңдар"}
             </a>
             <a href="https://akorda.kz/kz/addresses" className="text-[16px] opacity-[0.9] hover:underline font-light">
-              {locale === 'ru' ? "Послания" : "Жолдаулар"}
+              {locale === 'ru' ? "Послания" : locale === "en" ? "Messages" : "Жолдаулар"}
             </a>
             <a href="https://akorda.kz/kz/official_documents/strategies_and_programs" className="text-[16px] opacity-[0.9] hover:underline font-light">
-              {locale === "ru" ? "Стратегии и программы" : "Стратегиялар мен бағдарламалар"}
+              {locale === "ru" ? "Стратегии и программы" : locale === "en" ? "Strategies and programs" : "Стратегиялар мен бағдарламалар"}
             </a>
             <a href="https://akorda.kz/kz/executive_office/ethics_commissioner" className="text-[16px] opacity-[0.9] hover:underline font-light mt-5">
-              {locale === "ru" ? "Уполномоченный по этике" : "Әдеп жөніндегі уәкіл"}
+              {locale === "ru" ? "Уполномоченный по этике" : locale === "en" ? "Ethics Commissioner" : "Әдеп жөніндегі уәкіл"}
             </a>
             <a href="https://gostest.kz/" className="text-[16px] opacity-[0.9] hover:underline font-light mt-5">
-            {locale === "ru" ? "Государственный тест" : "Мемлекеттік тест"}
+            {locale === "ru" ? "Государственный тест" : locale === "en" ? "The State test" : "Мемлекеттік тест"}
           </a>
           </div>
           <div className="flex flex-col items-start gap-2">

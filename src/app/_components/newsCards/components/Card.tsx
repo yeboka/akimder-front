@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Eye from "./assets/lyra-icon-eye-open.svg"
 // import Comment from "./assets/lyra-icon-comments.svg"
-import { ru, kk } from 'date-fns/locale';
+import { ru, kk, enUS } from 'date-fns/locale';
 import Link from "next/link";
 import { format } from "date-fns";
 interface CardData {
@@ -37,7 +37,7 @@ const Card: React.FC<CardData> = ({id, image, title, view_count, date, area, wid
       </Link>
       <div className={'w-full flex justify-between text-[#7F7C7C] '}>
         <p>
-          {date ? format(new Date(date), 'd MMMM', { locale: locale === "ru" ? ru : kk }) : ''}
+          {date ? format(new Date(date), 'd MMMM', { locale: locale === "ru" ? ru : locale === "en" ? enUS : kk }) : ''}
         </p>
         <div className={'flex  gap-x-[21px]'}>
           <p className={'flex gap-x-1'}>

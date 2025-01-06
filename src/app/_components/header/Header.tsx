@@ -59,7 +59,7 @@ const Header = () => {
               <Image src={"/akimpressLogo.png"} alt={"dsf"} width={70} height={50}/>
             </Link>
             <button className="flex gap items-center text-white" onClick={() => setIsModalOpen(true)}>
-              {locale === "ru" ? "Государственные органы" : "Мемлекеттік органдар"}
+              {locale === "ru" ? "Государственные органы" : locale === "en" ? "Government agencies" : "Мемлекеттік органдар"}
               <Image src={ArrowIcon} alt={''} width={29} height={29}/>
             </button>
           </div>
@@ -72,7 +72,7 @@ const Header = () => {
                 </Link> :
                   <>
                     <Image src={PersonIcon} width={24} height={24} alt={''}/>
-                    {locale === "ru" ? "Вход / Регистрация" : "Кіру / Тіркелу"}
+                    {locale === "ru" ? "Вход" : locale === "en" ? "Sign in" : "Кіру"}
                   </>
               }
             </Link>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 const LanguageSelector = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("kk");
-  const languages = ["ru", "kk"];
+  const languages = ["ru", "kk", "en"];
 
   useEffect(() => {
     if (typeof window !== "undefined") {
