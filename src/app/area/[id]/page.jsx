@@ -63,9 +63,15 @@ const Page = () => {
                             {akimatInfo[`title_${locale}`]}
                         </p>
                         <div className={'flex gap-[30px]'}>
-                            <Image src={InstagramIcon} alt={''} width={20} height={20}/>
-                            <Image src={TelegramIcon} alt={''} width={20} height={20}/>
-                            <Image src={WhatsappIcon} alt={''} width={20} height={20}/>
+                             <Link href={akimatInfo.instagram || "#"}>
+                                 <Image src={InstagramIcon} alt={''} width={20} height={20}/>
+                             </Link>
+                            <Link href={akimatInfo.telegram || "#"}>
+                                <Image src={TelegramIcon} alt={''} width={20} height={20}/>
+                            </Link>
+                            <Link href={akimatInfo.whatsapp || "#"}>
+                                <Image src={WhatsappIcon} alt={''} width={20} height={20}/>
+                            </Link>
                         </div>
                     </div>
                 </div>

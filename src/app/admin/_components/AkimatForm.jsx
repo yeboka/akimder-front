@@ -32,6 +32,9 @@ const AkimatForm = ({setIsFormOpen, akimat}) => {
     head_description_kk: '',
     head_description_en: '',
     parent_id: null,
+    whatsapp: '',
+    instagram: '',
+    telegram: '',
     type: 'regional', // Default type
   });
 
@@ -119,6 +122,9 @@ const AkimatForm = ({setIsFormOpen, akimat}) => {
         head_description_kk: '',
         head_description_en: '',
         parent_id: null,
+        whatsapp: '',
+        instagram: '',
+        telegram: '',
         type: 'regional',
       });
       setIsFormOpen(false);
@@ -385,6 +391,39 @@ const AkimatForm = ({setIsFormOpen, akimat}) => {
                   </Option>
               ))}
             </Select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">WhatsApp</label>
+            <input
+                type="text"
+                name="whatsapp"
+                value={formData.whatsapp}
+                onChange={handleChange}
+                className="border rounded-md border-gray-300 p-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Instagram</label>
+            <input
+                type="text"
+                name="instagram"
+                value={formData.instagram}
+                onChange={handleChange}
+                className="border rounded-md border-gray-300 p-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Telegram</label>
+            <input
+                type="text"
+                name="telegram"
+                value={formData.telegram}
+                onChange={handleChange}
+                className="border rounded-md border-gray-300 p-2 w-full"
+            />
           </div>
 
           <div className="mt-4">
