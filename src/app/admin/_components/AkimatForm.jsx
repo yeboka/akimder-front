@@ -123,8 +123,8 @@ const AkimatForm = ({setIsFormOpen, akimat}) => {
       });
       setIsFormOpen(false);
     } catch (e) {
-      setResponseMessage('Произошла ошибка при отправке данных.');
       console.log(e)
+      setResponseMessage('Произошла ошибка при отправке данных.');
     } finally {
       setLoading(false);
     }

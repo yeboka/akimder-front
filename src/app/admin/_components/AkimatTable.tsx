@@ -61,7 +61,6 @@ const AkimatTable: React.FC<Props> = ({setSelectedAkimat, setIsFormOpen}) => {
       key: 'action',
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       render: (value: any) => {
-        console.log(value)
         return <Space size="middle">
           <a onClick={() => {
             setSelectedAkimat(value)

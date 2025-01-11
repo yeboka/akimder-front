@@ -14,7 +14,6 @@ const AdvertisementForm = ({ setIsFormOpen, advertisement }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log(advertisement)
     if (!advertisement) return;
     axiosInstance.get(`/advertisement/${advertisement.key}`).then((res) => {
       setFormData(res.data);

@@ -114,7 +114,6 @@ const Page = () => {
                             {
                                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                 newsData.map((item) => {
-                                    console.log(item)
                                     return <Card id={item.id} title={item.title} date={item.createdAt}
                                                  view_count={item.view_count}
                                                  image={item.image_url}

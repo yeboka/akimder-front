@@ -9,7 +9,6 @@ interface CardData {
 const Card: React.FC<CardData> = ({image, title, onClick}) => {
   return (
     <div className={'flex flex-col w-[258px] cursor-pointer'} onClick={() => {
-      console.log("dsfsdfsdfsdf")
       onClick()
     }}>
       <div

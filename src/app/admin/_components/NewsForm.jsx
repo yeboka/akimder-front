@@ -52,7 +52,6 @@ const NewsForm = ({ setIsFormOpen, news }) => {
 
         try {
             if (news) {
-                console.log(news)
                 const response = await axiosInstance.put(`/news/${news.key}`, formData);
                 if (response.status === 200) {
                     setResponseMessage('Новость успешно обновлена!');

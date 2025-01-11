@@ -135,12 +135,11 @@ export default function Modal({ isOpen, onClose }) {
 
   useEffect(() => {
     setLoading(true)
-    axiosInstance.get("/akimat")
+    axiosInstance.get("/akimat/regions")
         .then((res) => {
           setData({
             ...initData,
             "Акимат": res.data.map((item) => {
-              console.log(item)
               return {
                 name: item.title,
                 details: {

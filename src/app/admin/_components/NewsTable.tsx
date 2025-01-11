@@ -62,7 +62,6 @@ const NewsTable: React.FC<Props> = ({setSelectedNews, setIsFormOpen}) => {
       key: 'action',
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       render: (value: any) => {
-        console.log(value)
         return <Space size="middle">
           <a onClick={() => {
             setSelectedNews(value)

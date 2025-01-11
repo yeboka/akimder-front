@@ -10,7 +10,6 @@ import Banner from "@/app/_components/banners/banner";
 
 export default function Home() {
 
-  const [isRegions, setIsRegions] = useState<boolean>(false);
   const [locale, setLocale] = useState<string>("ru");
 
   useEffect(() => {
@@ -18,14 +17,6 @@ export default function Home() {
       setLocale(window.localStorage.getItem("locale") || "ru")
     }
   }, [])
-
-  const onRegionClick = () => {
-    setIsRegions(true)
-  }
-
-  useEffect(() => {
-    console.log()
-  }, [isRegions])
 
   return (
     <>
@@ -54,7 +45,7 @@ export default function Home() {
             </h1>
             <div className={'flex  flex-col-reverse  items-start md:flex-row gap-5 justify-between'}>
               <div>
-                <RegionCards onClick={onRegionClick}/>
+                <RegionCards />
                 <h1 className={'text-[42px] font-semibold mb-10 mt-10'}>
                   {locale === "ru" ? "Новости страны" : locale === "en" ? "Country News" : "Ел жаңалықтары"}
                 </h1>

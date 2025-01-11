@@ -16,7 +16,6 @@ interface CardData {
 }
 
 const Card: React.FC<CardData> = ({id, image, title, view_count, date, area, width}) => {
-  console.log(date)
   const locale = window.localStorage.getItem("locale")
   return (
     <div className={'flex flex-col cursor-pointer'} style={{width: width ? `${width}px` : '350px'}}>

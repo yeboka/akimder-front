@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import Image from "next/image";
 import PersonIcon from './assets/personIcon.svg'
 import ArrowIcon from './assets/lyra-icon-Arrow.svg'
-// import LanguageSelector from "@/app/_components/header/components/languageSelector";
 import Link from "next/link";
 import Container from "@/app/_components/container";
 import Modal from "@/app/_components/header/components/Modal";
