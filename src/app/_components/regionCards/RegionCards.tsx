@@ -51,17 +51,19 @@ const RegionCards: React.FC<CardsData> = ({ }) => {
 
   return (
     <div className={'flex justify-center w-full flex-col items-center'}>
-      <div className={'grid w-full grid-cols-1 gap-3 md:grid-cols-2 md:grid-cols-2 xl:grid-cols-2'}>
+      <ul className={'grid w-full grid-cols-1 gap-3 md:grid-cols-2 md:grid-cols-2 xl:grid-cols-2'}>
         {
           !loading && regions.map((item) => (
-            <Link
-              href={`/area/${item.id}`}
-              key={item.id}
-              className={'font-medium cursor-pointer flex items-center justify-start hover:underline gap-2'}
-            >
-              <span className={'w-[5px] h-[5px] rounded-full bg-black'} />
-              <span>{item.title}</span>
-            </Link>
+            <li key={item.id}>
+              <Link
+                href={`/area/${item.id}`}
+                className={'font-medium cursor-pointer flex items-center justify-start hover:underline gap-2'}
+              >
+                <span className={'w-[5px] h-[5px] rounded-full bg-black'} />
+                <span>{item.title}</span>
+              </Link>
+            </li>
+
           ))
         }
         {
@@ -69,7 +71,7 @@ const RegionCards: React.FC<CardsData> = ({ }) => {
             return <Skeleton.Input active={true} size={'small'} block={true} key={index}/>
           })
         }
-      </div>
+      </ul>
     </div>
   );
 };

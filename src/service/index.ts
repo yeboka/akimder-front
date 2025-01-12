@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 // Define the base URL of your API
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL; // Replace with your API URL
+export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL; // Replace with your API URL
 // eslint-disable-next-line react-hooks/rules-of-hooks
 // Create an axios instance
 // if (!LANG) {

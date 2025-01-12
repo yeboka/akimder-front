@@ -18,7 +18,7 @@ interface CardData {
 const Card: React.FC<CardData> = ({id, image, title, view_count, date, area, width}) => {
   const locale = window.localStorage.getItem("locale")
   return (
-    <div className={'flex flex-col cursor-pointer'} style={{width: width ? `${width}px` : '350px'}}>
+    <article className={'flex flex-col cursor-pointer'} style={{width: width ? `${width}px` : '350px'}}>
       <div
         className={'w-full bg-cover bg-center h-[197px] mb-[11px] relative'}
         style={{
@@ -34,7 +34,7 @@ const Card: React.FC<CardData> = ({id, image, title, view_count, date, area, wid
       <Link href={`/news/${id}`} style={{fontSize: `${width ? '16' : '21'}px`}} className={'text-[21px] font-medium hover:text-primary hover:underline hover:underline-offset-4'}>
         {title}
       </Link>
-      <div className={'w-full flex justify-between text-[#7F7C7C] '}>
+      <section className={'w-full flex justify-between text-[#7F7C7C] '}>
         <p>
           {date ? format(new Date(date), 'd MMMM', { locale: locale === "ru" ? ru : locale === "en" ? enUS : kk }) : ''}
         </p>
@@ -43,13 +43,9 @@ const Card: React.FC<CardData> = ({id, image, title, view_count, date, area, wid
             <Image src={Eye} alt={""} />
             {view_count}
           </p>
-          {/*<p className={'flex gap-x-1'}>*/}
-          {/*  <Image src={Comment} alt={""} />*/}
-          {/*  23*/}
-          {/*</p>*/}
         </div>
-      </div>
-    </div>
+      </section>
+    </article>
   );
 };
 

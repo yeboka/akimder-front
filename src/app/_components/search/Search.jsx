@@ -42,7 +42,7 @@ const Search = () => {
   }, [query]);
 
   return (
-    <div className="flex items-center w-full max-w-[720px] bg-white z-50 relative">
+    <section className="flex items-center w-full max-w-[720px] bg-white z-50 relative  z-[100]">
       <input
         type="text"
         placeholder={locale === "ru" ? "Поиск" : locale === "en" ? "Search" : "Іздеу"}
@@ -56,20 +56,22 @@ const Search = () => {
         className="p-2 ml-2 text-gray-600 hover:text-gray-800 transition w-14 flex justify-center bg-accent"
         aria-label='Поиск'
       >
-        <Image src={SearchIcon} alt={''} className={'text-white'} width={20} height={20} />
+        <Image src={SearchIcon} alt={'Иконка поиска по сайту'} className={'text-white'} width={20} height={20} />
       </button>
 
       {suggestions.length > 0 && (
-        <ul className="absolute top-full left-0 w-full bg-white shadow-lg mt-2 overflow-auto z-[100]">
+        <ul className="absolute top-full left-0 w-full bg-white shadow-lg mt-2 overflow-auto z-[100] max-h-[500px]">
           {suggestions.map((item) => (
-            <Link href={item.type === "akimat" ? `/area/${item.id}` : `/news/${item.id}`} key={item.id + item.title.ru} className="px-4 cursor-pointer py-2 text-gray-800 flex items-center justify-between hover:bg-gray-100  z-[1000]">
-              <strong>{item.title.ru}</strong> {/* Show Russian title as default */}
-              <p className={"text-[14px] text-gray-400"}>{item.type === "akimat" ? locale === "ru" ? "Акимат" : "Акімдік" : locale === "ru" ? "Новость" : "Жаңалық"}</p>
-            </Link>
+            <li key={item.id + item.title.ru} className={"z-[1000]"}>
+              <Link href={item.type === "akimat" ? `/area/${item.id}` : `/news/${item.id}`} className="px-4 cursor-pointer py-2 text-gray-800 flex items-center justify-between hover:bg-gray-100  ">
+                <strong>{item.title.ru}</strong> {/* Show Russian title as default */}
+                <p className={"text-[14px] text-gray-400"}>{item.type === "akimat" ? locale === "ru" ? "Акимат" : "Акімдік" : locale === "ru" ? "Новость" : "Жаңалық"}</p>
+              </Link>
+            </li>
           ))}
         </ul>
       )}
-    </div>
+    </section>
   );
 };
 

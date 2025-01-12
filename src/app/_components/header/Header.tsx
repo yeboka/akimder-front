@@ -49,11 +49,11 @@ const Header = () => {
 
 
   return (
-    <>
+    <header>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <Container className={'bg-primary'}>
-        <div className={'w-full flex items-center justify-between  py-[11px]'}>
-          <div className="flex items-center gap-4">
+        <nav className={'w-full flex items-center justify-between  py-[11px]'}>
+          <section className="flex items-center gap-4">
             <Link className={'cursor-pointer text-[14px] font-bold text-white'} href={'/'}>
               <Image src={"/akimpressLogo.png"} alt={"dsf"} width={70} height={50}/>
             </Link>
@@ -61,8 +61,8 @@ const Header = () => {
               {locale === "ru" ? "Государственные органы" : locale === "en" ? "Government agencies" : "Мемлекеттік органдар"}
               <Image src={ArrowIcon} alt={''} width={29} height={29}/>
             </button>
-          </div>
-          <div className={'flex gap-[20px]'}>
+          </section>
+          <section className={'flex gap-[20px]'}>
             <LanguageSelector />
             <Link href={"/login"} className={'text-white flex items-center px-[10px] py-[8px] gap-[10px]'}>
               {
@@ -75,10 +75,10 @@ const Header = () => {
                   </>
               }
             </Link>
-          </div>
-        </div>
+          </section>
+        </nav>
       </Container>
-    </>
+    </header>
 
   );
 };
