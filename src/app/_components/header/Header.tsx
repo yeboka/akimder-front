@@ -66,7 +66,7 @@ const Header = () => {
             <LanguageSelector />
             <Link href={"/login"} className={'text-white flex items-center px-[10px] py-[8px] gap-[10px]'}>
               {
-                user ? <Link href={"admin"} className={"text-[14px] font-normal text-white"}>
+                user ? <Link href={"/admin"} className={"text-[14px] font-normal text-white"}>
                   {user.firstName}
                 </Link> :
                   <>

@@ -15,6 +15,7 @@ import Container from "../../_components/container";
 import Card from "../../_components/newsCards/components/Card";
 import {useEffect, useState} from "react";
 import axiosInstance from "../../../service";
+import {Skeleton} from 'antd';
 
 const PageContent = () => {
     const [akimatInfo, setAkimatInfo] = useState(null);
@@ -49,8 +50,42 @@ const PageContent = () => {
 
 
     if (loading) {
-        return <div>
-            Loading
+        return <div className={"w-full flex flex-col items-center gap-8 mb-8"}>
+            <Skeleton.Node
+                active={true}
+                style={{
+                    width: "100vw",
+                    height: 200,
+                    backgroundColor: "#1F3C88",
+                    borderRadius: "none"
+                }}
+            />
+            <Container>
+                <div className={'w-full flex flex-col gap-8'}>
+                    <Skeleton.Input
+                        active
+                        style={{
+                            width: "50%",
+                            height: 50
+                        }}
+                    />
+                    <Skeleton active />
+                    <Skeleton.Input
+                        active={true}
+                        style={{
+                            width: "70%",
+                            height: 50
+                        }}
+                    />
+                    <Skeleton.Node
+                        active={true}
+                        style={{
+                            width: "70%",
+                            height: 300
+                        }}
+                    />
+                </div>
+            </Container>
         </div>
     }
 
@@ -247,7 +282,8 @@ const Text = ({text, isShowMore, setIsShowMore, locale}) => {
     return <p className="text-wrap">
         {isShowMore ? text : text?.substring(0, 400)}
         {text !== null && text.length > 400 &&
-            <button aria-label="Show more about the region" className="hover:cursor-pointer text-blue-700" onClick={() => onShowMoreClick()}>{
+            <button aria-label="Show more about the region" className="hover:cursor-pointer text-blue-700"
+                    onClick={() => onShowMoreClick()}>{
                 locale === "ru" ?
                     !isShowMore ? "Посмотреть больше" : "Скрыть"
                     :

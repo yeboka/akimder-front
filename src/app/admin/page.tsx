@@ -76,8 +76,8 @@ const App: React.FC = () => {
   };
 
   return (
-    <Container>
-      <div className='min-h-[97vh] w-full flex'>
+    <Container className="bg-gray-100">
+      <div className='min-h-[97vh] w-full flex bg-gray-100'>
         <Menu
           style={{ width: 256 }}
           selectedKeys={[selectedKey]} // Set selected key based on state
