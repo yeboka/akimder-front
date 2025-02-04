@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
               {locale === "ru" ? "Уполномоченный по этике" : locale === "en" ? "Ethics Commissioner" : "Әдеп жөніндегі уәкіл"}
             </a>
             <a href="https://gostest.kz/" className="text-[16px] opacity-[0.9] hover:underline font-light mt-5">
-            {locale === "ru" ? "Государственный тест" : locale === "en" ? "The State test" : "Мемлекеттік тест"}
+            {locale === "ru" ? "Государственный тест" : locale === "en" ? "The State test " : "Мемлекеттік тест"}
           </a>
           </div>
           <div className="flex flex-col items-start gap-2">
@@ -63,19 +63,19 @@ const Footer: React.FC = () => {
             </div>
             <div className={'flex gap-3 items-center'}>
               <Link href={"https://www.facebook.com/share/14QLJgMgyF/?mibextid=wwXIfr"} target={"_blank"}>
-                <Image src={'/icons8-facebook-64.png'} alt={''} width={25} height={25}/>
+                <Image src={'/assets/icons8-facebook-64.png'} alt={''} width={25} height={25}/>
               </Link>
               <Link href={"https://www.instagram.com/akimpress_kz?igsh=MTd2bjZ4Mm9wN3J3"} target={"_blank"}>
-                <Image src={'/lyra-icon-InstagramLogo.svg'} alt={''} width={20} height={20}/>
+                <Image src={'/assets/lyra-icon-InstagramLogo.svg'} alt={''} width={20} height={20}/>
               </Link>
               <Link href={"https://t.me/akimpress_kz"} target={"_blank"}>
-                <Image src={'/lyra-icon-TelegramLogo.svg'} alt={''} width={20} height={20} />
+                <Image src={'/assets/lyra-icon-TelegramLogo.svg'} alt={''} width={20} height={20} />
               </Link>
               <Link href={"https://www.tiktok.com/@akimpress.kz?_t=8sQJoT2d3uX&_r=1"} target={"_blank"}>
-                <Image src={'/icons8-tiktok.svg'} alt={''} width={25} height={25}/>
+                <Image src={'/assets/icons8-tiktok.svg'} alt={''} width={25} height={25}/>
               </Link>
               <Link href={"#"} target={"_blank"}>
-                <Image src={'/icons8-youtube.svg'} alt={''} width={25} height={25}/>
+                <Image src={'/assets/icons8-youtube.svg'} alt={''} width={25} height={25}/>
               </Link>
             </div>
           </div>

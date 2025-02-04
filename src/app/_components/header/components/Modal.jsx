@@ -170,7 +170,7 @@ export default function Modal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed top-0 z-[100] inset-0 bg-black bg-opacity-50 flex justify-center">
+    <div className="fixed top-0 z-[1000] inset-0 bg-black bg-opacity-50 flex justify-center">
       <div className="bg-white relative w-5/6 h-[100vh] overflow-hidden shadow-lg">
         <button
           className="text-lg absolute top-[20px] right-[20px] font-bold hover:text-red-500"

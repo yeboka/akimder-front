@@ -55,7 +55,7 @@ const Header = () => {
         <nav className={'w-full flex items-center justify-between  py-[11px]'}>
           <section className="flex items-center gap-4">
             <Link className={'cursor-pointer text-[14px] font-bold text-white'} href={'/'}>
-              <Image src={"/akimpressLogo.png"} alt={"dsf"} width={70} height={50}/>
+              <Image src={"/akimpressLogo.png"} alt={"Akimpress logo, home button. Акимпресс лого, кнопка главной страницы"} width={70} height={50}/>
             </Link>
             <button className="flex gap items-center text-white" onClick={() => setIsModalOpen(true)}>
               {locale === "ru" ? "Государственные органы" : locale === "en" ? "Government agencies" : "Мемлекеттік органдар"}
