@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /admin
 
-Sitemap: https://akimpress.kz.com/sitemap.xml
+Sitemap: https://akimpress.kz/sitemap.xml
