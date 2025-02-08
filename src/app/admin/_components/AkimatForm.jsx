@@ -4,7 +4,7 @@ import {Select} from 'antd';
 
 const {Option} = Select;
 
-const AkimatForm = ({setIsFormOpen, akimat}) => {
+const AkimatForm = ({isBg=flase, setIsFormOpen, akimat}) => {
     const [formData, setFormData] = useState({
         title_ru: '',
         title_kk: '',
@@ -138,7 +138,7 @@ const AkimatForm = ({setIsFormOpen, akimat}) => {
 
 
     return (
-        <div className="">
+        <div className={`${isBg && "bg-gray-200 p-3 rounded-lg "}`}>
             <form onSubmit={handleSubmit} className="space-y-10">
                 <div className="rounded-md border-1 bg-white border-gray p-4 space-y-4"
                      style={{"box-shadow": "rgba(0, 0, 0, 0.16) 0px 1px 4px"}}>

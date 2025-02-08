@@ -8,14 +8,18 @@ import TelegramIcon from "../_assets/lyra-icon-TelegramLogo.svg";
 import WhatsappIcon from "../_assets/lyra-icon-brand-whatsapp281.svg";
 import {format} from "date-fns";
 import {kk, ru} from "date-fns/locale";
-import {Carousel} from "antd";
+import {Carousel, Skeleton} from "antd";
+import {
+    EditOutlined
+} from '@ant-design/icons';
+
 import Eye from "@/app/_components/newsCards/components/assets/lyra-icon-eye-open.svg";
 import Banner from "../../_components/banners/banner";
 import Container from "../../_components/container";
 import Card from "../../_components/newsCards/components/Card";
 import {useEffect, useState} from "react";
 import axiosInstance from "../../../service";
-import {Skeleton} from 'antd';
+import ModalComponent from "./EditModal";
 
 const PageContent = () => {
     const [akimatInfo, setAkimatInfo] = useState(null);
@@ -24,14 +28,19 @@ const PageContent = () => {
     const [loading, setLoading] = useState(true)
     const [showMoreHeadInfo, setShowMoreHeadInfo] = useState(false)
     const [showMoreRegionInfo, setShowMoreRegionInfo] = useState(false)
+    const [user, setUser] = useState(null);
+    const [isOpen, setIsOpen] = useState(false)
     const params = useParams()
     const [locale, setLocale] = useState("ru")
+
     useEffect(() => {
         if (typeof window !== "undefined") {
             setLocale(window.localStorage.getItem("locale") || "ru")
         }
     }, [])
+
     useEffect(() => {
+        if (isOpen) return;
         setLoading(true)
         Promise.all([
             axiosInstance.get(`/akimat/${params.id}`)
@@ -46,8 +55,21 @@ const PageContent = () => {
         ]).finally(() => {
             setLoading(false)
         })
-    }, []);
+    }, [isOpen]);
 
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            try {
+                const response = await axiosInstance.get('/protected/profile'); // Protected route
+                setUser(response.data.user); // Assuming the backend sends the user data
+            } catch (error) {
+                console.error("Error fetching user profile:", error);
+                setUser(null);
+            }
+        };
+
+        fetchUserProfile();
+    }, []);
 
     if (loading) {
         return <div className={"w-full flex flex-col items-center gap-8 mb-8"}>
@@ -91,6 +113,25 @@ const PageContent = () => {
 
     return (
         <>
+            {
+                isOpen &&
+                <ModalComponent
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    akimatId={params.id}
+                />
+            }
+            {user && <Container className={"bg-secondary"}>
+                <div className="flex justify-end w-full">
+                    <button
+                        className={"p-2 flex items-center gap-3 mt-3 border-2 border-white text-white rounded-lg"}
+                        onClick={() => setIsOpen(true)}
+                    >
+                        <EditOutlined />
+                        <span>Редактировать страницу</span>
+                    </button>
+                </div>
+            </Container>}
             <Container className={'bg-secondary overflow-hidden'}>
                 <section className={'w-full'}>
                     <section className={'w-full  flex justify-between sm:my-10 md:my-14 lg:my-20 xl:my-24'}>
@@ -124,7 +165,7 @@ const PageContent = () => {
                     {locale === "ru" ? "Главные новости" : locale === "en" ? "Main news" : "Басты жаңалықтар"}
                 </h2>
                 {newsData && newsData.length > 0 && <div className={'flex w-full mb-10'}>
-                    <article className={'w-3/4 flex flex-col gap-y-3'}>
+                    <article className={`w-3/4 flex flex-col gap-y-3 ${isOpen && "-z-50"}`}>
                         <div
                             className={'w-full bg-cover bg-center relative'}
                             style={{
