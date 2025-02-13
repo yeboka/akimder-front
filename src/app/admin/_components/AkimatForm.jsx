@@ -4,7 +4,7 @@ import {Select} from 'antd';
 
 const {Option} = Select;
 
-const AkimatForm = ({isBg=flase, setIsFormOpen, akimat}) => {
+const AkimatForm = ({isBg = false, setIsFormOpen, akimat}) => {
     const [formData, setFormData] = useState({
         title_ru: '',
         title_kk: '',
