@@ -111,6 +111,12 @@ const PageContent = () => {
         </div>
     }
 
+    if (akimatInfo == null) {
+        return <div className={"w-screen h-screen z-1000"}>
+            <span>{locale === "ru" ? "Произошла ошибка обновите страницу" : locale === "en" ? "Error. Refresh the page" : "Қате, парақшаны жаңартініз"}</span>
+        </div>
+    }
+
     return (
         <>
             {

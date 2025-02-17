@@ -17,7 +17,7 @@ export default function ModalComponent({isOpen, setIsOpen, akimatId}) {
                         onClick={() => setIsOpen(false)}
                     >
                         <div
-                            className=" p-6 rounded max-w-[60%] w-full z-100"
+                            className=" md:p-6 rounded md:max-w-[60%] w-full z-100"
                             onClick={(e) => {
                                 e.stopPropagation();
                             }}
